@@ -5,6 +5,7 @@ import threading
 
     # 電卓GUIを起動する関数
 def launch_calculator():
+
     root = tk.Tk()
     root.title("Python電卓")
     root.geometry("300x400")
