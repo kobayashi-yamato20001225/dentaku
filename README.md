@@ -5,7 +5,6 @@ import threading
 
    
 def launch_calculator():
-
     root = tk.Tk()
     root.title("Python電卓")
     root.geometry("300x400")
