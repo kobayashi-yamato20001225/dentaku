@@ -72,10 +72,10 @@ def launch_calculator():
     root.mainloop()
 
    
-def on_click(x, y, button, pressed):
-    if button == Button.middle and pressed:
-        threading.Thread(target=launch_calculator).start()
+    def on_click(x, y, button, pressed):
+        if button == Button.middle and pressed:
+            threading.Thread(target=launch_calculator).start()
 
    
-with Listener(on_click=on_click) as listener:
-    listener.join()
+    with Listener(on_click=on_click) as listener:
+        listener.join()
