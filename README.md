@@ -66,6 +66,5 @@ def on_click(x, y, button, pressed):  # マウスのクリックイベントを�
     if button == Button.middle and pressed:  # 中央ボタンが押されたとき
         threading.Thread(target=launch_calculator).start()  # 電卓を別スレッドで起動
 
-# マウスリスナーを開始（終了するまで待機）
 with Listener(on_click=on_click) as listener:
     listener.join()
