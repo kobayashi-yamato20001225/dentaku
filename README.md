@@ -1,4 +1,5 @@
 #作成日2025/07/30
+#更新日2025/08/19
 
 from pynput.mouse import Listener, Button  # マウス操作を監視するためのライブラリ
 import tkinter as tk  # GUI（電卓）を作るためのライブラリ
