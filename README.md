@@ -1,4 +1,3 @@
-# 必要なライブラリをインポート
 from pynput.mouse import Listener, Button  # マウス操作を監視するためのライブラリ
 import tkinter as tk                       # GUI作成用ライブラリ
 import threading                           # スレッド処理用ライブラリ
