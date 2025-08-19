@@ -1,42 +1,49 @@
+# 必要なライブラリをインポート
 from pynput.mouse import Listener, Button  # マウス操作を監視するためのライブラリ
 import tkinter as tk                       # GUI作成用ライブラリ
 import threading                           # スレッド処理用ライブラリ
 
-def launch_calculator():  # 電卓GUIを起動する関数
-    root = tk.Tk()  # 新しいウィンドウを作成
-    root.title("Python電卓")  # ウィンドウのタイトル
-    root.geometry("300x400")  # ウィンドウサイズ
-    root.resizable(False, False)  # サイズ変更を不可にする
+# 電卓GUIを起動する関数
+def launch_calculator():
+    root = tk.Tk()
+    root.title("Python電卓")
+    root.geometry("300x400")
+    root.resizable(False, False)
 
-    expression = ""  # 入力された数式を保持する変数
+    expression = ""
 
-    display = tk.Label(  # 表示ラベル（数式や結果を表示）
+    # 表示ラベル（数式や結果を表示）
+    display = tk.Label(
         root, text="", anchor="e", bg="white", fg="black",
         font=("Arial", 24), relief="ridge", height=2
     )
     display.pack(fill="both", padx=10, pady=10)
 
-    def press(key):  # ボタンが押されたときの処理（数式に追加）
+    # ボタンが押されたときの処理（数式に追加）
+    def press(key):
         nonlocal expression
         expression += str(key)
         display.config(text=expression)
 
-    def clear():  # クリアボタンの処理（数式をリセット）
+    # クリアボタンの処理（数式をリセット）
+    def clear():
         nonlocal expression
         expression = ""
         display.config(text="")
 
-    def calculate():  # 計算ボタンの処理（数式を評価して結果を表示）
+    # 計算ボタンの処理（数式を評価して結果を表示）
+    def calculate():
         nonlocal expression
         try:
-            result = str(eval(expression))  # evalで計算
+            result = str(eval(expression))
             display.config(text=result)
-            expression = result  # 結果を次の入力に使えるように
+            expression = result
         except:
-            display.config(text="エラー")  # エラー処理
+            display.config(text="エラー")
             expression = ""
 
-    buttons = [  # 電卓のボタン配置（4行×4列）
+    # 電卓のボタン配置（4行×4列）
+    buttons = [
         ["7", "8", "9", "/"],
         ["4", "5", "6", "*"],
         ["1", "2", "3", "-"],
@@ -46,25 +53,29 @@ def launch_calculator():  # 電卓GUIを起動する関数
     frame = tk.Frame(root)
     frame.pack()
 
-    for row in buttons:  # 各ボタンを作成して配置
+    # 各ボタンを作成して配置
+    for row in buttons:
         r = tk.Frame(frame)
         r.pack(expand=True, fill="both")
         for btn in row:
             b = tk.Button(r, text=btn, font=("Arial", 18), relief="groove", borderwidth=1)
             b.pack(side="left", expand=True, fill="both")
             if btn == "=":
-                b.config(command=calculate)  # "="は計算処理
+                b.config(command=calculate)
             else:
-                b.config(command=lambda x=btn: press(x))  # その他は入力処理
+                b.config(command=lambda x=btn: press(x))
 
-    clear_btn = tk.Button(root, text="C", font=("Arial", 18), bg="lightgray", command=clear)  # クリアボタン（C）
+    # クリアボタン（C）
+    clear_btn = tk.Button(root, text="C", font=("Arial", 18), bg="lightgray", command=clear)
     clear_btn.pack(fill="both", padx=10, pady=5)
 
-    root.mainloop()  # GUIのイベントループ開始
+    root.mainloop()
 
-def on_click(x, y, button, pressed):  # マウスのクリックイベントを監視する関数
-    if button == Button.middle and pressed:  # 中央ボタンが押されたとき
-        threading.Thread(target=launch_calculator).start()  # 電卓を別スレッドで起動
+# マウスのクリックイベントを監視する関数
+def on_click(x, y, button, pressed):
+    if button == Button.middle and pressed:
+        threading.Thread(target=launch_calculator).start()
 
+# マウスリスナーを開始（終了するまで待機）
 with Listener(on_click=on_click) as listener:
     listener.join()
