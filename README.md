@@ -1,3 +1,5 @@
+#作成日2025/07/30
+
 from pynput.mouse import Listener, Button
 import tkinter as tk
 import threading
