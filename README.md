@@ -9,9 +9,7 @@ def launch_calculator():
     root.title("Python電卓")
     root.geometry("300x400")
     root.resizable(False, False)
-
     expression = ""
-
    
     display = tk.Label(
         root, text="", anchor="e", bg="white", fg="black",
