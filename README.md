@@ -1,9 +1,9 @@
-# 必要なライブラリをインポート
+    # 必要なライブラリをインポート
 from pynput.mouse import Listener, Button  
 import tkinter as tk                       
 import threading                           
 
-# 電卓GUIを起動する関数
+    # 電卓GUIを起動する関数
 def launch_calculator():
     root = tk.Tk()
     root.title("Python電卓")
@@ -71,11 +71,11 @@ def launch_calculator():
 
     root.mainloop()
 
-# マウスのクリックイベントを監視する関数
+    # マウスのクリックイベントを監視する関数
 def on_click(x, y, button, pressed):
     if button == Button.middle and pressed:
         threading.Thread(target=launch_calculator).start()
 
-# マウスリスナーを開始（終了するまで待機）
+    # マウスリスナーを開始（終了するまで待機）
 with Listener(on_click=on_click) as listener:
     listener.join()
