@@ -1,7 +1,7 @@
 # 必要なライブラリをインポート
-from pynput.mouse import Listener, Button  # マウス操作を監視するためのライブラリ
-import tkinter as tk                       # GUI作成用ライブラリ
-import threading                           # スレッド処理用ライブラリ
+from pynput.mouse import Listener, Button  
+import tkinter as tk                       
+import threading                           
 
 # 電卓GUIを起動する関数
 def launch_calculator():
@@ -30,7 +30,7 @@ def launch_calculator():
         nonlocal expression
         expression = ""
         display.config(text="")
-
+   
     # 計算ボタンの処理（数式を評価して結果を表示）
     def calculate():
         nonlocal expression
